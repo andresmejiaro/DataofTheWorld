@@ -1,9 +1,17 @@
+'''
+Filename: /home/andres/DataoftheWorld/DataPage.py
+Path: /home/andres/DataoftheWorld
+Created Date: Thursday, July 13th 2023, 10:25:26 am
+Author: Andres Mejia
+
+Copyright (c) 2023 Your Company
+'''
+
 from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go 
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 
 class WebPage:
 	def __init__(self,name):
@@ -14,6 +22,12 @@ class WebPage:
 	def get_layout(self):
 		pass
 
+	def get_url(self):
+		return self.__webAddress
+	
+	def get_name(self):
+		return self.__name
+
 class GenderSeriesPage(WebPage):
 	def __init__(self, name, datafile = "csv/UN_WPP2022_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT_REV1.csv",
 	      		gender_dropdown_options = [
@@ -22,6 +36,10 @@ class GenderSeriesPage(WebPage):
 							{'label': 'Total', 'value': 'Total_Population_as_of_1_July_thousands'}
 						], gender_dropdown_default = ['Total_Population_as_of_1_July_thousands']):
 		super().__init__(name)
+		self.__plot_id = name + "_plot"
+		self.__country_dropdown_id = name + "_country_dropdown"
+		self.__gender_dropdown_id = name + "_gender_dropdown"
+		self.__year_slider_id = name + "_year_slider"
 		self.__df = pd.read_csv(datafile)
 		self.__min_year = int(self.__df['Year'].min())
 		self.__max_year = int(self.__df['Year'].max())
@@ -36,26 +54,26 @@ class GenderSeriesPage(WebPage):
 				html.Div(id='ads', style={'width': '20%', 'display': 'inline-block'}),
 				html.Div([
 					dcc.Dropdown(
-						id='country-dropdown',
-						options=[{'label': i, 'value': i} for i in self.__df['Region_subregion_country_or_area'].unique()],
-						value=['WORLD'],
-						multi=True
+						id = self.__country_dropdown_id,
+						options = [{'label': i, 'value': i} for i in self.__df['Region_subregion_country_or_area'].unique()],
+						value = ['WORLD'],
+						multi = True
 					),
 					dcc.Dropdown(
-						id='gender-dropdown',
+						id = self.__gender_dropdown_id,
 						options = self.__gender_dropdown_options,
-						value= self.__gender_dropdown_default,
-						multi=True
+						value = self.__gender_dropdown_default,
+						multi = True
 					),
 					dcc.RangeSlider(
-						id='year-slider',
-						min=self.__min_year,
-						max=self.__max_year,
-						value=[self.__min_year, self.__max_year],
-						marks={str(year): str(year) for year in range(self.__min_year, self.__max_year+1, self.__step_size)}
+						id = self.__year_slider_id,
+						min = self.__min_year,
+						max = self.__max_year,
+						value = [self.__min_year, self.__max_year],
+						marks = {str(year): str(year) for year in range(self.__min_year, self.__max_year+1, self.__step_size)}
 					),
-					dcc.Graph(id='time-series-chart')
-				], style={'width': '75%', 'display': 'inline-block', 'padding': '0 20'})
+					dcc.Graph(id = self.__plot_id)
+				], style = {'width': '75%', 'display': 'inline-block', 'padding': '0 20'})
 			]),
 
 			html.H3("Source: United Nations, Department of Economic and Social Affairs, Population Division (2022). World Population Prospects 2022, Online Edition.", style={'textAlign': 'center'}),
@@ -70,10 +88,10 @@ class GenderSeriesPage(WebPage):
 
 	def plot_callback(self, app):
 		@app.callback(
-			Output('time-series-chart', 'figure'),
-			Input('country-dropdown', 'value'),
-			Input('gender-dropdown', 'value'),
-			Input('year-slider', 'value'),
+			Output(self.__plot_id, 'figure'),
+			Input(self.__country_dropdown_id, 'value'),
+			Input(self.__gender_dropdown_id, 'value'),
+			Input(self.__year_slider_id, 'value'),
 		)
 		def update_graph(selected_countries, selected_genders, selected_years):
 			fig = go.Figure()
