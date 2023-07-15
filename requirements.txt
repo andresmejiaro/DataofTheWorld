@@ -1,0 +1,33 @@
+ansi2html @ file:///home/conda/feedstock_root/build_artifacts/ansi2html_1667056512865/work
+blinker @ file:///home/conda/feedstock_root/build_artifacts/blinker_1681349778161/work
+Bottleneck @ file:///work/ci_py311/bottleneck_1676827011612/work
+certifi==2023.5.7
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1688813409104/work
+click @ file:///home/conda/feedstock_root/build_artifacts/click_1689279387612/work
+dash @ file:///home/conda/feedstock_root/build_artifacts/dash_1688189698970/work
+Flask @ file:///home/conda/feedstock_root/build_artifacts/flask_1682966527207/work
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work
+importlib-metadata @ file:///home/conda/feedstock_root/build_artifacts/importlib-metadata_1688754491823/work
+itsdangerous @ file:///home/conda/feedstock_root/build_artifacts/itsdangerous_1648147185463/work
+Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1654302431367/work
+MarkupSafe @ file:///work/ci_py311/markupsafe_1676823507015/work
+mkl-fft==1.3.6
+mkl-random @ file:///work/mkl/mkl_random_1682950433854/work
+mkl-service==2.4.0
+nest-asyncio @ file:///home/conda/feedstock_root/build_artifacts/nest-asyncio_1664684991461/work
+numexpr @ file:///croot/numexpr_1683221822650/work
+numpy @ file:///croot/numpy_and_numpy_base_1687466208449/work
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1681337016113/work
+pandas==1.5.3
+plotly @ file:///home/conda/feedstock_root/build_artifacts/plotly_1686267560832/work
+PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1661604839144/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1680088766131/work
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1684774241324/work
+retrying==1.3.3
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+tenacity @ file:///home/conda/feedstock_root/build_artifacts/tenacity_1677600641219/work
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1688315532570/work
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1686156552494/work
+Werkzeug @ file:///home/conda/feedstock_root/build_artifacts/werkzeug_1686273693854/work
+zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1689374466814/work
