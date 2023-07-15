@@ -8,6 +8,11 @@ app = dash.Dash(__name__, suppress_callback_exceptions = True)
 
 app.title = "Data"
 
+app.layout = html.Div([
+    html.H1('Hello Dash')
+])
+
+
 # Initialize pages
 pages = [
 	GenderSeriesPage("population"),
@@ -30,18 +35,18 @@ for page in pages:
 page_dict = {page.get_url(): page for page in pages}
 
 # Define the layout
-app.layout = html.Div([
-	dcc.Location(id='url', refresh=False),
-	html.Div([
-		html.H1("Data Visualization", style={'textAlign': 'center'}),
-		html.Div(id='page-content'),
-		html.Div([
-			dcc.Link('Go to Population page', href=pages[0].get_url()),
-			html.Br(),
-			dcc.Link('Go to Life Expectancy page', href=pages[1].get_url())
-		]),
-	])
-])
+# app.layout = html.Div([
+# 	dcc.Location(id='url', refresh=False),
+# 	html.Div([
+# 		html.H1("Data Visualization", style={'textAlign': 'center'}),
+# 		html.Div(id='page-content'),
+# 		html.Div([
+# 			dcc.Link('Go to Population page', href=pages[0].get_url()),
+# 			html.Br(),
+# 			dcc.Link('Go to Life Expectancy page', href=pages[1].get_url())
+# 		]),
+# 	])
+# ])
 
 @app.callback(Output('page-content', 'children'),
 				[Input('url', 'pathname')])
