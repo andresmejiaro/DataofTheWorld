@@ -59,8 +59,6 @@ def main():
             return "/population"
         else:
             return pathname  
-        
-    app.run_server()
 
 if __name__ == '__main__':
     main()
