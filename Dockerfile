@@ -1,15 +1,26 @@
-FROM debian:bookworm 
+# Pull the official Python 3.11 image
+FROM python:3.11-slim-bullseye
 
-RUN apt update && apt install -y \
-	curl \
-	python3 \
-	python3-pip \
-	python3-venv && rm -rf /var/lib/apt/lists/*
-RUN python3 -m venv venv
-RUN /venv/bin/python -m pip install dash plotly pandas dash-core-components
+# Set work directory
+WORKDIR /usr/src/app
 
-COPY UN_WPP2022_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT_REV1.csv /csv/
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the CSV files
+COPY ./csv/UN_WPP2022_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT_REV1.csv csv/
+
+# Copy the Python files
+COPY ./main.py .
+COPY ./DataPage.py .
+
+# Expose port
 EXPOSE 8050
 
-#docker run -it debian:bookworm /bin/bash
+# Run the application
+CMD ["python", "main.py"]
