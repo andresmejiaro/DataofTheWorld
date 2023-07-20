@@ -1,10 +1,10 @@
 '''
-Filename: /home/andres/DataoftheWorld/DataPage.py
-Path: /home/andres/DataoftheWorld
-Created Date: Thursday, July 13th 2023, 10:25:26 am
+Filename: /home/andres/DataoftheWorld/dash_app/DataPage.py
+Path: /home/andres/DataoftheWorld/dash_app
+Created Date: Thursday, July 20th 2023, 6:14:03 pm
 Author: Andres Mejia
 
-Copyright (c) 2023 Your Company
+Copyright (c) 2023 worlddatainsight
 '''
 
 from dash import dcc, html
